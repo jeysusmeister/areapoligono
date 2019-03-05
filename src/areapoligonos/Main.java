@@ -1,7 +1,10 @@
 package areapoligonos;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import poligonos.Area;
 import javax.swing.JOptionPane;
+
 
 public class Main {
     
@@ -57,7 +60,7 @@ public class Main {
         try{
             area.setBaseT(Double.parseDouble(JOptionPane.showInputDialog(null, "Ingresa la  Base del triángulo")));
             area.setAlturaT(Double.parseDouble(JOptionPane.showInputDialog(null, "Ingresa la  Altura del triángulo")));
-            JOptionPane.showMessageDialog(null, "El área del triángulo de \nBase: "+area.getBaseT()+" y Altura "+area.getAlturaT()+"\n es: "+(area.getBaseT()*area.getAlturaT()/2), "Resultado",JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showMessageDialog(null, "El área del triángulo de \nBase: "+area.getBaseT()+" y Altura "+area.getAlturaT()+"\n es: "+(new BigDecimal(area.getBaseT()*area.getAlturaT()/2).setScale(2, RoundingMode.CEILING)), "Resultado",JOptionPane.DEFAULT_OPTION);
         }catch(NullPointerException b){
             if(area.getBaseR()== 0){
                 JOptionPane.showMessageDialog(null,"La Base del triángulo no debe estar vacia.\n Adios! ","[ERROR]",JOptionPane.ERROR_MESSAGE);
@@ -85,7 +88,7 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Ud. selecciono el círculo", "Selecciono",JOptionPane.WARNING_MESSAGE);
         try{
             area.setRadio(Double.parseDouble(JOptionPane.showInputDialog(null, "Ingresa el radio del círculo")));
-            JOptionPane.showMessageDialog(null, "El área del círculo de radio: "+area.getRadio()+" \n es: "+(Math.PI*area.getRadio()), "Resultado",JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showMessageDialog(null, "El área del círculo de radio: "+area.getRadio()+" \n es: "+(new BigDecimal(Math.PI * Math.pow(area.getRadio(),2)).setScale(2, RoundingMode.CEILING)), "Resultado",JOptionPane.DEFAULT_OPTION);
         }catch(NullPointerException c){
             if(area.getRadio()== 0){
                 JOptionPane.showMessageDialog(null,"Debe ingresar el radio del círculo.\n Adios! ","[ERROR]",JOptionPane.ERROR_MESSAGE);
